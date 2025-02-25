@@ -1,0 +1,32 @@
+services:
+  # User DB Service
+  user-db-service:
+    extends:
+      service: user-db-service
+      file: ./user-db/docker-compose.yml
+
+  postgres:
+    extends:
+      service: postgres
+      file: ./user-db/docker-compose.yml
+
+  pgadmin:
+    extends:
+      service: pgadmin
+      file: ./user-db/docker-compose.yml
+
+  # Spring Boot Service
+  user-search-service:
+    extends:
+      service: user-search-service
+      file: ./user-search/docker-compose.yml
+
+  elasticsearch:
+    extends:
+      service: elasticsearch
+      file: ./user-search/docker-compose.yml
+
+  kibana:
+    extends:
+      service: kibana
+      file: ./user-search/docker-compose.yml

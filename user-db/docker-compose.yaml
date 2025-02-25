@@ -1,0 +1,40 @@
+services:
+  user-db-service:
+    container_name: user-db-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    image: postgres:17.2
+    container_name: user-search-postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: user
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d user" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  pgadmin:
+    image: dpage/pgadmin4:8.14.0
+    container_name: user-search-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
