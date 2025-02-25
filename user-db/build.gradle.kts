@@ -29,6 +29,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.springframework.kafka:spring-kafka")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 	runtimeOnly("org.postgresql:postgresql")
@@ -37,8 +38,6 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
 	testImplementation("org.testcontainers:junit-jupiter")
-	testImplementation("org.testcontainers:kafka")
-	testImplementation("org.testcontainers:postgresql")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

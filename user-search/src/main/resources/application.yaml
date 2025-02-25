@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger.html
+    operationsSorter: method
+    tagsSorter: alpha
+  show-actuator: true
+  writer-with-order-by-keys: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    security:
+      enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: integration-test

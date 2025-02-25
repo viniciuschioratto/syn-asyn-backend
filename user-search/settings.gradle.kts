@@ -1,1 +1,1 @@
-rootProject.name = "User-Search"
+rootProject.name = "user-search"
