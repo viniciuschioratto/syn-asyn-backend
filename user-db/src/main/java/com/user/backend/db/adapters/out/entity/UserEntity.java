@@ -17,6 +17,8 @@ import java.util.List;
 @Builder
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     private Long id;
 
     private String firstname;

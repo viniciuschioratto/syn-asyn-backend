@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @Builder
 public class UserAddressEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_address_sequence")
+    @SequenceGenerator(name = "user_address_sequence", sequenceName = "user_address_sequence", allocationSize = 1)
     private Long id;
 
     private String city;

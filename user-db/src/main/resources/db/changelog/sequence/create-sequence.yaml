@@ -1,0 +1,46 @@
+databaseChangeLog:
+  # User
+  - changeSet:
+      id: sequence-user
+      author: Vinicius Chioratto
+      preConditions:
+        - onFail: CONTINUE
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT COUNT(*) FROM information_schema.sequences WHERE sequence_name = 'user_sequence'
+      changes:
+        - createSequence:
+            sequenceName: user_sequence
+            startValue: 1
+            incrementBy: 1
+
+  - changeSet:
+      id: set-user-sequence
+      author: Vinicius Chioratto
+      changes:
+        - modifySql:
+            dbms: postgresql
+            sql: ALTER TABLE user_db ALTER COLUMN id SET DEFAULT nextval('user_sequence')
+
+  # User Address
+  - changeSet:
+      id: sequence-user-address
+      author: Vinicius Chioratto
+      preConditions:
+        - onFail: CONTINUE
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT COUNT(*) FROM information_schema.sequences WHERE sequence_name = 'user_address_sequence'
+      changes:
+        - createSequence:
+            sequenceName: user_address_sequence
+            startValue: 1
+            incrementBy: 1
+
+  - changeSet:
+      id: set-user-address-sequence
+      author: Vinicius Chioratto
+      changes:
+        - modifySql:
+            dbms: postgresql
+            sql: ALTER TABLE user_address ALTER COLUMN id SET DEFAULT nextval('user_address_sequence')
