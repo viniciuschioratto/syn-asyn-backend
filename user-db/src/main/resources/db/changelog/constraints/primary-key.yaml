@@ -1,0 +1,27 @@
+databaseChangeLog:
+    - changeSet:
+        id: primary-key-user
+        author: Vinicius Chioratto
+        preConditions:
+            - onFail: MARK_RAN
+              sqlCheck:
+                expectedResult: 0
+                sql: SELECT COUNT(*) FROM information_schema.table_constraints WHERE table_name = 'user' AND constraint_type = 'PRIMARY KEY'
+        changes:
+            - addPrimaryKey:
+                columnNames: id
+                constraintName: pk_user
+                tableName: user
+    - changeSet:
+        id: primary-user-address
+        author: Vinicius Chioratto
+        preConditions:
+            - onFail: MARK_RAN
+              sqlCheck:
+                expectedResult: 0
+                sql: SELECT COUNT(*) FROM information_schema.table_constraints WHERE table_name = 'user_address' AND constraint_type = 'PRIMARY KEY'
+        changes:
+            - addPrimaryKey:
+                columnNames: id
+                constraintName: pk_user_address
+                tableName: user_address

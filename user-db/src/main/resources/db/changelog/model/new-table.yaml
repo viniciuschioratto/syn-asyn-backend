@@ -1,0 +1,73 @@
+databaseChangeLog:
+    - changeSet:
+        id: table-user
+        author: Vinicius Chioratto
+        preConditions:
+            - onFail: MARK_RAN
+              sqlCheck:
+                expectedResult: 0
+                sql: SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'user'
+        changes:
+            - createTable:
+                tableName: user
+                columns:
+                    - column:
+                        name: id
+                        type: BIGINT
+                    - column:
+                        name: firstname
+                        type: VARCHAR(255)
+                    - column:
+                        name: lastname
+                        type: VARCHAR(255)
+                    - column:
+                        name: birthday
+                        type: TIMESTAMP
+                    - column:
+                        name: email
+                        type: VARCHAR(255)
+                    - column:
+                        name: created_at
+                        type: TIMESTAMP
+                    - column:
+                        name: updated_at
+                        type: TIMESTAMP
+    - changeSet:
+        id: table-user-address
+        author: Vinicius Chioratto
+        preConditions:
+          - onFail: MARK_RAN
+            sqlCheck:
+              expectedResult: 0
+              sql: SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'user_address'
+        changes:
+          - createTable:
+              tableName: user_address
+              columns:
+                - column:
+                    name: id
+                    type: BIGINT
+                - column:
+                    name: city
+                    type: VARCHAR(255)
+                - column:
+                    name: street
+                    type: VARCHAR(255)
+                - column:
+                    name: country
+                    type: VARCHAR(255)
+                - column:
+                    name: zipcode
+                    type: VARCHAR(255)
+                - column:
+                    name: type
+                    type: VARCHAR(255)
+                - column:
+                    name: userid
+                    type: BIGINT
+                - column:
+                    name: created_at
+                    type: TIMESTAMP
+                - column:
+                    name: updated_at
+                    type: TIMESTAMP

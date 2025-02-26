@@ -1,0 +1,18 @@
+databaseChangeLog:
+    - changeSet:
+        id: foreign-key-user-address
+        author: Vinicius Chioratto
+        preConditions:
+            - onFail: MARK_RAN
+              sqlCheck:
+                expectedResult: 0
+                sql: SELECT COUNT(*) FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY' AND table_name = 'user_address' AND constraint_name = 'fk_user_address_user'
+        changes:
+            - addForeignKeyConstraint:
+                baseColumnNames: userid
+                baseTableName: user_address
+                constraintName: fk_user_address_user
+                onDelete: CASCADE
+                onUpdate: CASCADE
+                referencedColumnNames: id
+                referencedTableName: user

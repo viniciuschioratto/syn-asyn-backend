@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: "model/new-table.yaml"
+      relativeToChangelogFile: true
+  - include:
+      file: "constraints/primary-key.yaml"
+      relativeToChangelogFile: true
+  - include:
+      file: "constraints/foreign-key.yaml"
+      relativeToChangelogFile: true
