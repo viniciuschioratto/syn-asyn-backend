@@ -6,12 +6,12 @@ databaseChangeLog:
             - onFail: MARK_RAN
               sqlCheck:
                 expectedResult: 0
-                sql: SELECT COUNT(*) FROM information_schema.table_constraints WHERE table_name = 'user' AND constraint_type = 'PRIMARY KEY'
+                sql: SELECT COUNT(*) FROM information_schema.table_constraints WHERE table_name = 'user_db' AND constraint_type = 'PRIMARY KEY'
         changes:
             - addPrimaryKey:
                 columnNames: id
                 constraintName: pk_user
-                tableName: user
+                tableName: user_db
     - changeSet:
         id: primary-user-address
         author: Vinicius Chioratto

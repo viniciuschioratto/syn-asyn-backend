@@ -15,4 +15,4 @@ databaseChangeLog:
                 onDelete: CASCADE
                 onUpdate: CASCADE
                 referencedColumnNames: id
-                referencedTableName: user
+                referencedTableName: user_db

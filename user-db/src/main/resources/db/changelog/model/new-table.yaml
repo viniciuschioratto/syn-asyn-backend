@@ -6,10 +6,10 @@ databaseChangeLog:
             - onFail: MARK_RAN
               sqlCheck:
                 expectedResult: 0
-                sql: SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'user'
+                sql: SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'user_db'
         changes:
             - createTable:
-                tableName: user
+                tableName: user_db
                 columns:
                     - column:
                         name: id
@@ -26,6 +26,9 @@ databaseChangeLog:
                     - column:
                         name: email
                         type: VARCHAR(255)
+                    - column:
+                        name: active
+                        type: BOOLEAN
                     - column:
                         name: created_at
                         type: TIMESTAMP
