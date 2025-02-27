@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -91,7 +92,8 @@ public class UserApiV1 {
             }),
     })
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest userRequest) throws UserNotFoundException {
+    // TODO - Validated is not working
+    public ResponseEntity<UserResponse> createUser(@RequestBody @Validated CreateUserRequest userRequest) {
         UserDomain userDomain = createUserInputPort.createUser(userRequestMapper.fromUserResponseToUserDomain(userRequest));
         return ResponseEntity.ok(userResponseMapper.fromUserDomainToUserResponse(userDomain));
     }

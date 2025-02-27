@@ -7,6 +7,6 @@ RUN gradle clean build -x test
 # Stage 2: Run the project
 FROM amazoncorretto:21.0.4-alpine
 WORKDIR /app
-COPY --from=builder /app/build/libs/app.jar app.jar
-CMD ["java", "-jar", "app.jar"]
+COPY --from=builder /app/build/libs/user-db.jar user-db.jar
+CMD ["java", "-jar", "user-db.jar"]
 EXPOSE 8080

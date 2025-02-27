@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "user_db")
@@ -36,8 +37,8 @@ public class UserEntity {
 
     private LocalDateTime updated_at;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserAddressEntity> addresses;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserAddressEntity> addresses = new ArrayList<>();
 
     @PrePersist
     protected void onInsert() {
