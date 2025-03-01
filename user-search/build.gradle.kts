@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "com.user.backend"
-version = "0.0.1-SNAPSHOT"
 
 java {
 	toolchain {
@@ -35,9 +34,6 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
-	testImplementation("org.testcontainers:elasticsearch")
-	testImplementation("org.testcontainers:junit-jupiter")
-	testImplementation("org.testcontainers:kafka")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
