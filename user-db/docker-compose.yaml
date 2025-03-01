@@ -25,6 +25,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    command: ["postgres", "-c", "wal_level=logical"]
   pgadmin:
     image: dpage/pgadmin4:8.14.0
     container_name: user-search-pgadmin
@@ -165,30 +166,32 @@ services:
       - CONFIG_STORAGE_TOPIC=pg_connect_configs
       - OFFSET_STORAGE_TOPIC=pg_connect_offsets
       - STATUS_STORAGE_TOPIC=pg_connect_statuses
+      - LOG_LEVEL=ERROR
+
   # TODO - Add Schema Registry
-  schema-registry:
-    container_name: schema-registry
-    image: confluentinc/cp-schema-registry:7.4.1
-    environment:
-      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:32181
-      - SCHEMA_REGISTRY_HOST_NAME=schema-registry
-      - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8083
-    ports:
-        - '8083:8081'
-  connector-sender:
-    container_name: connector-sender
-    image: confluentinc/cp-kafka-connect:7.4.1
-    volumes:
-      - ./conf:/conf
-    depends_on:
-      - kafka-connector
-    command:
-      - bash
-      - -c
-      - |
-        echo "Wainting for kafka connect to start..."
-        until [[ "$$(curl -s -o /dev/null -w %{http_code} kafka-connector:9090/connectors)" -eq 200 ]]; do
-          sleep 1
-        done
-        echo -e "Sending connector"
-        curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" kafka-connector:9090/connectors/ -d @pg_kafka_connector_config.json 
+  #schema-registry:
+  #  container_name: schema-registry
+  #  image: confluentinc/cp-schema-registry:7.4.1
+  #  environment:
+  #    - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:32181
+  #    - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+  #    - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8083
+  #  ports:
+  #      - '8083:8081'
+  #connector-sender:
+  #  container_name: connector-sender
+  #  image: confluentinc/cp-kafka-connect:7.4.1
+  #  volumes:
+  #    - ./conf:/conf
+  #  depends_on:
+  #    - kafka-connector
+  #  command:
+  #    - bash
+  #    - -c
+  #    - |
+  #      echo "Wainting for kafka connect to start..."
+  #      until [[ "$$(curl -s -o /dev/null -w %{http_code} kafka-connector:9090/connectors)" -eq 200 ]]; do
+  #        sleep 1
+  #      done
+  #      echo -e "Sending connector"
+  #      curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" kafka-connector:9090/connectors/ -d @conf/pg_kafka_connector_config.json

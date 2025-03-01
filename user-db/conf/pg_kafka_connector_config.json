@@ -1,5 +1,5 @@
 {
-    "name": "pg-orders-source",
+    "name": "pg-user_db-connector",
     "config": {
         "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
         "database.hostname": "postgres",
@@ -8,10 +8,12 @@
         "database.password": "admin",
         "database.dbname": "user",
         "database.server.name": "User",
+        "topic.prefix": "user_db",
         "table.include.list": "public.user_db",
-        "topic.prefix": "dbserver1",
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "plugin.name": "pgoutput",
         "snapshot.mode": "initial",
-        "snapshot.locking.mode": "none"
+        "schema.history.internal.kafka.bootstrap.servers": "kafka-broker-1:29091,kafka-broker-2:29092,kafka-broker-3:29093",
+        "schema.history.internal.kafka.topic": "schema-changes.inventory"
     }
 }
