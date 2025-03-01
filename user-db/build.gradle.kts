@@ -27,7 +27,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.liquibase:liquibase-core")
-	implementation("org.springframework.kafka:spring-kafka")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	compileOnly("org.projectlombok:lombok")
@@ -38,7 +37,6 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
-	testImplementation("org.springframework.kafka:spring-kafka-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
