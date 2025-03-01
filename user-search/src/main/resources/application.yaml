@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+  kafka:
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
 springdoc:
   api-docs:
     path: /api-docs
@@ -21,6 +24,8 @@ management:
       show-details: always
     security:
       enabled: false
+kafka:
+  servers: kafka-broker-1:29091,kafka-broker-2:29092,kafka-broker-3:29093
 
 ---
 spring:

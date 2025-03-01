@@ -3,61 +3,61 @@ services:
   user-db-service:
     extends:
       service: user-db-service
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   postgres:
     extends:
       service: postgres
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   pgadmin:
     extends:
       service: pgadmin
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   # User Search Service
   user-search-service:
     extends:
       service: user-search-service
-      file: ./user-search/docker-compose.yml
+      file: ./user-search/docker-compose.yaml
 
   elasticsearch:
     extends:
       service: elasticsearch
-      file: ./user-search/docker-compose.yml
+      file: ./user-search/docker-compose.yaml
 
   kibana:
     extends:
       service: kibana
-      file: ./user-search/docker-compose.yml
+      file: ./user-search/docker-compose.yaml
 
   # Kafka
   kafka-ui:
     extends:
       service: kafka-ui
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   zookeeper:
     extends:
       service: zookeeper
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   kafka-broker-1:
     extends:
       service: kafka-broker-1
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   kafka-broker-2:
     extends:
       service: kafka-broker-2
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   kafka-broker-3:
     extends:
       service: kafka-broker-3
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml
 
   kafka-connector:
     extends:
       service: kafka-connector
-      file: ./user-db/docker-compose.yml
+      file: ./user-db/docker-compose.yaml

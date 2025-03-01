@@ -11,7 +11,7 @@ services:
         condition: service_healthy
   postgres:
     image: postgres:17.2
-    container_name: user-search-postgres
+    container_name: user-db-postgres
     restart: always
     shm_size: 128mb
     environment:
@@ -28,7 +28,7 @@ services:
     command: ["postgres", "-c", "wal_level=logical"]
   pgadmin:
     image: dpage/pgadmin4:8.14.0
-    container_name: user-search-pgadmin
+    container_name: user-db-pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
