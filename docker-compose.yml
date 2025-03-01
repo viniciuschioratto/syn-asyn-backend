@@ -15,7 +15,7 @@ services:
       service: pgadmin
       file: ./user-db/docker-compose.yml
 
-  # Spring Boot Service
+  # User Search Service
   user-search-service:
     extends:
       service: user-search-service
@@ -31,105 +31,33 @@ services:
       service: kibana
       file: ./user-search/docker-compose.yml
 
-  # Kafka Container
-  # When run a single service, the local docker compose contains the kafka also
+  # Kafka
   kafka-ui:
-    container_name: kafka-ui
-    image: provectuslabs/kafka-ui:latest
-    ports:
-      - "8082:8080"
-    environment:
-      DYNAMIC_CONFIG_ENABLED: 'true'
-      KAFKA_CLUSTERS_0_NAME: Broker-1
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-broker-1:29091
-      KAFKA_CLUSTERS_1_NAME: Broker-2
-      KAFKA_CLUSTERS_1_BOOTSTRAPSERVERS: kafka-broker-2:29092
-      KAFKA_CLUSTERS_2_NAME: Broker-3
-      KAFKA_CLUSTERS_2_BOOTSTRAPSERVERS: kafka-broker-3:29093
-      LOGGING_LEVEL_ROOT: error
-      LOGGING_LEVEL_COM_PROVECTUS: error
-    depends_on:
-      - kafka-broker-1
-      - kafka-broker-2
-      - kafka-broker-3
+    extends:
+      service: kafka-ui
+      file: ./user-db/docker-compose.yml
 
   zookeeper:
-    container_name: zookeeper
-    image: confluentinc/cp-zookeeper:7.4.1
-    restart: unless-stopped
-    ports:
-      - "32181:32181"
-      - "2888:2888"
-      - "3888:3888"
-    environment:
-      ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOOKEEPER_INIT_LIMIT: 5
-      ZOOKEEPER_SYNC_LIMIT: 2
-      ZOOKEEPER_SERVERS: zookeeper:2888:3888
-    healthcheck:
-      test: echo stat | nc zookeeper 32181
-      interval: 10s
-      timeout: 10s
-      retries: 3
+    extends:
+      service: zookeeper
+      file: ./user-db/docker-compose.yml
 
   kafka-broker-1:
-    container_name: kafka-broker-1
-    image: confluentinc/cp-kafka:7.4.1
-    restart: unless-stopped
-    ports:
-      - "9091:9091"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker-1:29091,EXTERNAL://localhost:9091
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-    healthcheck:
-      test: nc -vz kafka-broker-1 9091
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    depends_on:
-      - zookeeper
+    extends:
+      service: kafka-broker-1
+      file: ./user-db/docker-compose.yml
 
   kafka-broker-2:
-    container_name: kafka-broker-2
-    image: confluentinc/cp-kafka:7.4.1
-    restart: unless-stopped
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_BROKER_ID: 2
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker-2:29092,EXTERNAL://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-    healthcheck:
-      test: nc -vz kafka-broker-2 9092
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    depends_on:
-      - zookeeper
+    extends:
+      service: kafka-broker-2
+      file: ./user-db/docker-compose.yml
 
   kafka-broker-3:
-    container_name: kafka-broker-3
-    image: confluentinc/cp-kafka:7.4.1
-    restart: unless-stopped
-    ports:
-      - "9093:9093"
-    environment:
-      KAFKA_BROKER_ID: 3
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker-3:29093,EXTERNAL://localhost:9093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-    healthcheck:
-      test: nc -vz kafka-broker-3 9093
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    depends_on:
-      - zookeeper
+    extends:
+      service: kafka-broker-3
+      file: ./user-db/docker-compose.yml
+
+  kafka-connector:
+    extends:
+      service: kafka-connector
+      file: ./user-db/docker-compose.yml

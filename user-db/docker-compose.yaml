@@ -173,7 +173,7 @@ services:
   #  container_name: connector-sender
   #  image: confluentinc/cp-kafka-connect:7.4.1
   #  volumes:
-  #    - ./conf:/conf
+  #    - ./config:/config
   #  depends_on:
   #    - kafka-connector
   #  command:
@@ -181,8 +181,8 @@ services:
   #    - -c
   #    - |
   #      echo "Wainting for kafka connect to start..."
-  #      until [[ "$$(curl -s -o /dev/null -w %{http_code} kafka-connector:9090/connectors)" -eq 200 ]]; do
+  #      until [[ "$$(curl -s -o /dev/null -w %{http_code} localhost:9090/connectors)" -eq 200 ]]; do
   #        sleep 1
   #      done
   #      echo -e "Sending connector"
-  #      curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" kafka-connector:9090/connectors/ -d @conf/pg_kafka_connector_config.json
+  #      curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" localhost:9090/connectors/ -d @/config/pg_kafka_connector_config.json
