@@ -9,7 +9,7 @@
         "database.dbname": "user",
         "database.server.name": "User",
         "topic.prefix": "user_db",
-        "table.include.list": "public.user_db",
+        "table.include.list": "public.user_db,public.user_address",
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
         "plugin.name": "pgoutput",
         "snapshot.mode": "initial",
