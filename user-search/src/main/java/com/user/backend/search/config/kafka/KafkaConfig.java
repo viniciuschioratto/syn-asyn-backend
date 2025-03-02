@@ -25,29 +25,7 @@ public class KafkaConfig {
     @Value("${kafka.servers}")
     private String servers;
 
-    @Qualifier("kafkaListenerContainerFactoryString")
-    @Bean
-    KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>>
-    kafkaListenerContainerFactoryString() {
-        ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigs()));
-        factory.setConcurrency(3);
-        factory.getContainerProperties().setPollTimeout(3000);
-        return factory;
-    }
-
-    @Bean
-    public Map<String, Object> consumerConfigs() {
-        Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, servers);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "user");
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        return props;
-    }
-
-
+    // TODO: Improve the code https://stackoverflow.com/questions/78196711/spring-boot-kafka-json-object-deserializtion
     @Qualifier("kafkaListenerContainerFactoryJson")
     @Bean
     KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, PayloadKafka>>

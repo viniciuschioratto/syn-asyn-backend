@@ -10,11 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserConsumer {
 
-    @KafkaListener(topics = "string", containerFactory = "kafkaListenerContainerFactoryString")
-    public void consume(String payload) {
-        log.info("Consumed message: {}", payload);
-    }
-
     @KafkaListener(topics = "user_db.public.user_db", containerFactory = "kafkaListenerContainerFactoryJson")
     public void consume1(@Payload PayloadKafka payload) {
         log.info("Consumed1 message: {}", payload);
