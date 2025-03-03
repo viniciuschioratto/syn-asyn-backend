@@ -26,6 +26,9 @@ management:
       enabled: false
 kafka:
   servers: kafka-broker-1:29091,kafka-broker-2:29092,kafka-broker-3:29093
+elasticsearch:
+  host: elasticsearch
+  port: 9200
 
 ---
 spring:
