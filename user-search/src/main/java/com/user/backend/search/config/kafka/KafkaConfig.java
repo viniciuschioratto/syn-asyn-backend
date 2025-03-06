@@ -1,8 +1,8 @@
 package com.user.backend.search.config.kafka;
 
 import com.user.backend.search.adapters.in.consumers.payload.PayloadKafka;
+import com.user.backend.search.adapters.in.consumers.payload.UserDbPayload;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

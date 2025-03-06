@@ -6,20 +6,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDbPayload {
+public class UserAddressPayload {
     private Long id;
-    private String firstname;
-    private String lastname;
-    private LocalDate birthdate;
-    private String email;
-    private boolean active;
-    //private LocalDateTime created_at;
-    //private LocalDateTime updated_at;
+    private String city;
+    private String street;
+    private String country;
+    private String zipcode;
+    private String type;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 }
