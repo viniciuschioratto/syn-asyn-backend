@@ -14,6 +14,7 @@ import org.mapstruct.Mapping;
 public interface UserConsumerMapper {
 
     @Mapping(target = "addresses", ignore = true)
+    @Mapping(target = "birthday", ignore = true)
     @Mapping(target = "created_at", ignore = true)
     @Mapping(target = "updated_at", ignore = true)
     UserDomain fromUserDbPayloadToUserDomain(UserDbPayload userDbPayload);

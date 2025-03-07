@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +17,9 @@ public class UserDbPayload {
     private Long id;
     private String firstname;
     private String lastname;
-    private LocalDate birthdate;
+    //private LocalDate birthday;
     private String email;
     private boolean active;
-    //private LocalDateTime created_at;
+    private Instant created_at;
     //private LocalDateTime updated_at;
 }

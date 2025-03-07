@@ -1,6 +1,5 @@
 package com.user.backend.search.adapters.in.consumers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.user.backend.search.adapters.in.consumers.mapper.UserConsumerMapper;
 import com.user.backend.search.adapters.in.consumers.payload.PayloadKafka;
 import com.user.backend.search.application.ports.in.UserCreateUpdateInputPort;
@@ -25,7 +24,7 @@ public class UserConsumer {
     }
 
     @KafkaListener(topics = "user_db.public.user_db", containerFactory = "kafkaListenerContainerFactoryJson")
-    public void userDbConsumer(@Payload PayloadKafka payload) throws JsonProcessingException {
+    public void userDbConsumer(@Payload PayloadKafka payload) {
         log.info("Consuming user_db.public.user_db topic");
         userCreateUpdateInputPort.createUpdateUser(userConsumerMapper.fromUserDbPayloadToUserDomain(payload.getPayload().getAfter()));
         log.info("Consumed user_db.public.user_db topic");
