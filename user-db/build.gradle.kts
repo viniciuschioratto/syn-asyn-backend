@@ -29,6 +29,7 @@ dependencies {
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
 	implementation("org.mapstruct:mapstruct:1.6.3")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.3")
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 	runtimeOnly("org.postgresql:postgresql")
