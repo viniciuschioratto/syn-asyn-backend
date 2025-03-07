@@ -13,6 +13,7 @@ This POC is using the following libraries:
 8. Spring Boot Actuator
 9. Testcontainers
 10. Springdoc-openapi
+11. Liquibase
 
 ## Setup
 
