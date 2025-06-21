@@ -13,4 +13,5 @@ import org.mapstruct.Mapper;
 public interface UserElasticsearchMapper {
 
     UserEntity fromDomainToEntity(UserDomain userDomain);
+    UserDomain fromEntityToDomain(UserEntity userEntity);
 }

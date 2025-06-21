@@ -1,0 +1,5 @@
+1 - Get user by ID from ES
+2 - Separate user topic and flow
+    1 - Create user in a topic
+    2 - Update user in a topic
+    3 - Delete user in a topic
